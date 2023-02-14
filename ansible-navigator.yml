@@ -1,0 +1,6 @@
+---
+ansible-navigator:
+  logging:
+    level: critical
+    append: true
+    file: ./ansible-navigator.log
