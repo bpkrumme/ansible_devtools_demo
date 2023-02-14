@@ -1,1 +1,7 @@
-[]
+[managed]
+node1 ansible_host=192.168.124.127
+node2 ansible_host=192.168.124.140
+node3 ansible_host=192.168.124.73
+
+[control]
+localhost

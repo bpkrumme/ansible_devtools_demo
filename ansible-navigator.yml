@@ -4,3 +4,11 @@ ansible-navigator:
     level: critical
     append: true
     file: ./ansible-navigator.log
+  execution-environment:
+    container-engine: auto
+    enabled: true
+    pull:
+      policy: missing
+    image: demo_ee
+  playbook-artifact:
+    enable: false
