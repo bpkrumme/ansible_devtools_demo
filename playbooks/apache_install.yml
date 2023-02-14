@@ -1,0 +1,15 @@
+---
+- name: install and configure apache webserver
+  hosts: managed
+  become: true
+  tasks:
+    - name: install httpd package
+
+    - name: configure httpd
+
+    - name: copy web content
+
+    - name: enable httpd service
+
+  handlers:
+    - name: restart_httpd
