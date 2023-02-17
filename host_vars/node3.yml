@@ -1,0 +1,15 @@
+---
+timesync_ntp_servers:
+  - hostname: 0.pool.ntp.org
+    iburst: yes
+  - hostname: 1.pool.ntp.org
+    iburst: yes
+  - hostname: 2.pool.ntp.org
+    iburst: yes
+  - hostname: 3.pool.ntp.org
+    iburst: yes
+cockpit_packages: default
+crypto_policies_policy: "DEFAULT:NO-SHA1"
+tlog_scope_sssd: all
+selinux_policy: targeted
+selinux_state: enforcing
