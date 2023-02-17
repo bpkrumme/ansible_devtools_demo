@@ -9,9 +9,13 @@ The following sections are a suggested runbook for performing the demonstration 
 There is an expectation that if you present this demo you have an understanding of Ansible and either have a demo environment or can create one.  There are no playbooks or automation included to configure a lab environment.
 
 1. You will need one or more hosts to automate against.  You can do this in your own lab environment, or using a hyperscaler, your choice
-2. Update the `demo_inventory/hosts` inventory file to reflect your demo environment
-3. Update the `ansible.cfg` to meet your needs, especially the `remote_user` parameter
+2. Update the `demo_inventory/hosts` inventory file and files in the `group_vars` and `host_vars` directories to reflect your demo environment
+3. Update the `ansible.cfg` to meet your needs, especially the `remote_user` parameter and your token for pulling collections from Automation Hub
 4. Test ad-hoc commands against your demo environment to make sure it works before performing the demo
+5. Podman must be installed and configured on your demo control node
+6. Log into the `registry.redhat.io` container registry for pulling EE builder images
+
+        $ podman login registry.redhat.io
 
 ## Demonstrate use of the Ansible VS Code extension
 
@@ -85,26 +89,23 @@ Demo steps:
 
             2. We can do this from anywhere in the ansible-navigator TUI
                 1. `Esc` takes us back to the previous page...not to the parent menu
-        3. Images
+        3. Inventory
+            1. Open our inventory with
+
+                    :inventory -i demo_inventory/hosts
+
+            2. Show browsing groups
+            3. Show browsing hosts
+                1. Show host details
+        4. Images
             1. `Esc` back to Welcome screen and open Images menu with
 
                 :images
 
             2. Explain that this is how we can interact with our EE's, but the menu shows all of the container images on our system whether they are an EE or not.
             3. Point out image name, tag, wheither it's an EE or not
-            4. Explain color highlighting
-
-                <span style="color:magenta">
-                Magenta signifies that this is the execution environment currently configured and in use
-                </span>
-
-                <span style="color:green">
-                Green signifies that this is an available execution environment
-                </span>
-
-                The other items in the list, which you'll see are grayed out are container images which are not an execution environment.
-            5. More on EE's in a few moments
-        4. Run - We can also run playbooks from within ansible-navigator TUI
+            4. More on EE's in a few moments
+        5. Run - We can also run playbooks from within ansible-navigator TUI
             1. run `apache_install.yml` playbook with
 
                     :run playbooks/apache_install.yml
@@ -112,7 +113,7 @@ Demo steps:
             2. Show play list, point out summary and progress section
             3. Descend into play showing task list, point out result for each task, host it was run on, task name, and task action
             4. Show task details for a task other than gather_facts, point out module arguments, and msg field
-2. CLI Overview
+5. CLI Overview
     1. Explain that commands can be run from the CLI directly
     1. Explain that there are two modes
         1. Interactive mode
@@ -130,15 +131,39 @@ Demo steps:
 ## Demonstrate Ansible Builder
 
 1. Show our `configure_base_system.yml` playbook which includes roles from the `redhat.rhel_system_roles` collection
-2. Explain that this collection is a certified and supported collection that we can get 
-### Show ee configuration file
+    1. We need an Execution Environment with this collection in order to run the playbook, and so we can provide our runtime to AAP Platform Operators
+2. Explain that this collection is a certified and supported collection that we can get from Automation Hub
+3. Show the `ansible.cfg.example` ansible configuration file with the token configuration for Automation Hub
+4. Show the `demo_ee/execution-environment.yml
+    1. base image and builder image which are pulled from the `registry.redhat.io` container registry
+    2. ansible.cfg which sets our ansible configuration inside the Execution Environment
+    3. requirements.yml which defines the collections we want available in the EE
+        1. This includes requirements for the playbook I showed, but also some requirements for automations we are going to do in the future, so I've included those as well
+    4. requirements.txt which defines the python libraries we need to support our collections
+        1. These are some of the requirements for the amazon.aws collection
+    5. bindep.txt which defines the binary packages we need installed in the EE to support additional functionality
+5. Demonstrate building the Execution environment using anisble-builder
+    1. Change directory to `demo_ee` directory
 
-### Show requirements files
+            $ cd demo_ee
 
-### Show ansible.cfg
+    2. Run the `ansible-builder` command to build the Execution Environment
 
-### Demonstrate ansible-builder build
+            $ ansible-builder build -t demo_ee -v 3 --prune-images
 
-We can build our execution environment using ansible-builder build
+6. Now we can configure ansible-navigator to use our Execution Environment
+    1. Modify `ansible-navigator.yml` removing the coment on the `image` line
+    2. Explain that this sets our default execution environment, but we could also set this on the CLI when we launch Ansible Navigator
 
-    $ ansible-builder build -t <ee_tag> 
+            $ ansible-navigator --execution-environment-image demo_ee
+
+7. Let's run this playbook for our base configuration using `ansible-navigator` and see what happens.
+    1. Show the inventory variables in `group_vars` to show that we have a default configuration we want
+    2. Show the inventory variables in `host_vars` to show that we have one host that we want to be different
+    3. Run the playbook
+
+            $ ansible-navigator run configure_base_system.yml
+
+        OR
+
+            $ ansible-navigator run --execution-environment-image demo_ee configure_base_system.yml

@@ -9,6 +9,6 @@ ansible-navigator:
     enabled: true
     pull:
       policy: missing
-#    image: demo_ee
+    image: demo_ee
   playbook-artifact:
     enable: false
