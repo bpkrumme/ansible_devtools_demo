@@ -12,8 +12,9 @@ There is an expectation that if you present this demo you have an understanding 
 2. Update the `demo_inventory/hosts` inventory file and files in the `group_vars` and `host_vars` directories to reflect your demo environment
 3. Update the `ansible.cfg` to meet your needs, especially the `remote_user` parameter and your token for pulling collections from Automation Hub
 4. Test ad-hoc commands against your demo environment to make sure it works before performing the demo
-5. Podman must be installed and configured on your demo control node
-6. Log into the `registry.redhat.io` container registry for pulling EE builder images
+5. You should run ansible-lint prior to doing the demo to cache collections for the linter to work quickly
+6. Podman must be installed and configured on your demo control node
+7. Log into the `registry.redhat.io` container registry for pulling EE builder images
 
         $ podman login registry.redhat.io
 
