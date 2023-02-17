@@ -5,3 +5,6 @@ node3 ansible_host=192.168.124.73
 
 [control]
 localhost
+
+[eda]
+eda.bk.lab ansible_host=172.24.128.7

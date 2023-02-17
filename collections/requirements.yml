@@ -2,5 +2,5 @@
 collections:
   - ansible.posix
   - ansible.utils
-  #- community.general
-  #- redhat.rhel_system_roles
+  - community.general
+  - redhat.rhel_system_roles
