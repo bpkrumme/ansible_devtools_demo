@@ -40,7 +40,10 @@ Demo steps:
 Demo steps:
 
 1. Open a terminal in VS Code
-2. run `ansible-lint apache_install.yml` in the terminal window.
+2. run `ansible-lint` in the terminal window.
+
+        $ ansible-lint apache_install.yml
+
 3. Show list of the rule violations
     1. Highlight link to documentation for each rule (red rule name)
     2. Each violation has a summary of the detected rule violation
@@ -51,6 +54,9 @@ Demo steps:
     2. tag of the rule
     3. which rule profile
     4. any associated rule tags
+6. Fix the linter violations and re-run `ansible-lint`
+
+        $ ansible-lint apache-install.yml
 
 ## Demonstrate Ansible Navigator
 
@@ -76,7 +82,7 @@ Demo steps:
                 :collections
 
             1. This shows us the collections available in the current execution environment - more on EEs later
-            2. View the ansible.posix collection by typing the number next to the collection
+            2. View the `ansible.posix` collection by typing the number next to the collection
                 1. If number is double-digit, we use the same command structure as previous menus such as `:<X>
                 2. Show list of collection components
             3. Deeper look into collection component `ansible.posix.sysctl` by typing `:<X>` next to the module
@@ -106,6 +112,9 @@ Demo steps:
             2. Explain that this is how we can interact with our EE's, but the menu shows all of the container images on our system whether they are an EE or not.
             3. Point out image name, tag, wheither it's an EE or not
             4. More on EE's in a few moments
+            5. We can view details of the EE from here
+                1. Talk about Image and General Information
+                2. Show Ansible version and Collections
         5. Run - We can also run playbooks from within ansible-navigator TUI
             1. run `apache_install.yml` playbook with
 
