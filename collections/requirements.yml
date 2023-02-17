@@ -7,4 +7,3 @@ collections:
   - redhat.rhel_idm
   - redhat.rhel_system_roles
   - redhat.satellite
-  

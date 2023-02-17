@@ -1,13 +1,13 @@
 ---
 timesync_ntp_servers:
   - hostname: 0.pool.ntp.org
-    iburst: yes
+    iburst: true
   - hostname: 1.pool.ntp.org
-    iburst: yes
+    iburst: true
   - hostname: 2.pool.ntp.org
-    iburst: yes
+    iburst: true
   - hostname: 3.pool.ntp.org
-    iburst: yes
+    iburst: true
 cockpit_packages: default
 crypto_policies_policy: "DEFAULT:NO-SHA1"
 tlog_scope_sssd: all
