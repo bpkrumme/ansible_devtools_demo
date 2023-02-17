@@ -1,7 +1,0 @@
----
-collections:
-  - amazon.aws
-  - ansible.posix
-  - ansible.utils
-  - redhat.insights
-  - redhat.rhel_system_roles
