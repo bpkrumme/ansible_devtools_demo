@@ -8,13 +8,26 @@ The following sections are a suggested runbook for performing the demonstration 
 
 There is an expectation that if you present this demo you have an understanding of Ansible and either have a demo environment or can create one.  There are no playbooks or automation included to configure a lab environment.
 
+Your control node needs python3.8 or newer and either podman or Docker for Linux installed and configured.
+
 1. You will need one or more hosts to automate against.  You can do this in your own lab environment, or using a hyperscaler, your choice
 2. Update the `demo_inventory/hosts` inventory file and files in the `group_vars` and `host_vars` directories to reflect your demo environment
 3. Update the `ansible.cfg` to meet your needs, especially the `remote_user` parameter and your token for pulling collections from Automation Hub
 4. Test ad-hoc commands against your demo environment to make sure it works before performing the demo
-5. You should run ansible-lint prior to doing the demo to cache collections for the linter to work quickly
-6. Podman must be installed and configured on your demo control node
-7. Log into the `registry.redhat.io` container registry for pulling EE builder images
+5. Install VS Code and Ansible Extension
+6. Install ansible-lint, ansible-navigator, and ansible-builder on your demo control node.
+
+        $ python3 -m pip install anisble-lint ansible-navigator ansible-builder
+
+    OR for RHEL (With AAP subscription) or Fedora control nodes:
+
+        $sudo dnf -y install ansible-lint ansible-navigator ansible-builder
+
+7. You should run ansible-lint prior to doing the demo to cache collections for the linter to work quickly
+
+        $ ansible-lint
+
+8. Log into the `registry.redhat.io` container registry for pulling EE builder images
 
         $ podman login registry.redhat.io
 
@@ -107,7 +120,7 @@ Demo steps:
         4. Images
             1. `Esc` back to Welcome screen and open Images menu with
 
-                :images
+                    :images
 
             2. Explain that this is how we can interact with our EE's, but the menu shows all of the container images on our system whether they are an EE or not.
             3. Point out image name, tag, wheither it's an EE or not
