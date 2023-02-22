@@ -13,3 +13,4 @@ crypto_policies_policy: "DEFAULT:NO-SHA1"
 tlog_scope_sssd: all
 selinux_policy: targeted
 selinux_state: permissive
+apache_listen_port: 8080
