@@ -6,5 +6,4 @@
     - redhat.rhel_system_roles.timesync
     - redhat.rhel_system_roles.cockpit
     - redhat.rhel_system_roles.crypto_policies
-    - redhat.rhel_system_roles.tlog
     - redhat.rhel_system_roles.selinux
