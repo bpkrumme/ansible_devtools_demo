@@ -11,4 +11,5 @@ ansible-navigator:
       policy: missing
 #    image: demo_ee
   playbook-artifact:
-    enable: false
+    enable: true
+    save-as: 'artifacts/{playbook_name}-artifact-{time_stamp}.json'
