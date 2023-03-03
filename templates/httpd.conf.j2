@@ -44,7 +44,7 @@ ServerRoot "/etc/httpd"
 # page for more information.
 #
 #Listen 12.34.56.78:80
-Listen {{ apache_listen_port }}
+Listen {{ ansible_default_ipv4.address}}:{{ apache_listen_port }}
 
 #
 # Dynamic Shared Object (DSO) Support
