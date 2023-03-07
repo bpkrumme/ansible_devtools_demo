@@ -4,4 +4,4 @@ node02 ansible_host=192.168.124.232
 node03 ansible_host=192.168.124.82
 
 [control]
-localhost
+localhost ansible_connection=local

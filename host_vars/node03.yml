@@ -8,9 +8,6 @@ timesync_ntp_servers:
     iburst: true
   - hostname: 3.pool.ntp.org
     iburst: true
-cockpit_packages: default
-crypto_policies_policy: "DEFAULT:NO-SHA1"
-tlog_scope_sssd: all
 selinux_policy: targeted
-selinux_state: enforcing
-apache_listen_port: 80
+selinux_state: permissive
+apache_listen_port: 8080

@@ -1,0 +1,51 @@
+---
+- name: Validate per-host base configuration
+  hosts: managed
+  become: true
+  tasks:
+    - name: Check that timesync servers are correct
+      ansible.builtin.command: grep -q {{ item.hostname }} /etc/chrony.conf
+      register: chrony_check
+      failed_when: chrony_check.rc != 0
+      changed_when: false
+      loop: "{{ timesync_ntp_servers }}"
+
+    - name: Check that crypto policy is correct
+      ansible.builtin.command: 'update-crypto-policies --show'
+      register: crypto_check
+      failed_when: "crypto_policies_policy not in crypto_check.stdout"
+      changed_when: false
+
+    - name: Check that selinux is using correct policy
+      ansible.builtin.shell:
+        cmd: sestatus | grep 'Loaded policy'
+      register: sepol_check
+      failed_when: "selinux_policy not in sepol_check.stdout"
+      changed_when: false
+
+    - name: Get selinux enforcement state
+      ansible.builtin.command: getenforce
+      register: enforce_check
+      failed_when: "selinux_state not in enforce_check.stdout.lower()"
+      changed_when: false
+
+    - name: Check that cockpit is accessible locally
+      ansible.builtin.uri:
+        url: https://localhost:9090
+        return_content: true
+        validate_certs: false
+      register: local_url_check
+      failed_when: "'Red Hat Enterprise Linux' not in local_url_check.content"
+
+- name: Check Remote Connections
+  hosts: localhost
+  become: false
+  tasks:
+    - name: Check that cockpit URL is available
+      ansible.builtin.uri:
+        url: https://{{ hostvars[item].ansible_host }}:9090/
+        return_content: true
+        validate_certs: false
+      register: url_check
+      failed_when: "'Red Hat Enterprise Linux' not in url_check.content"
+      loop: "{{ groups['managed'] }}"
