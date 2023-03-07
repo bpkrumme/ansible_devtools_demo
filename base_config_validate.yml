@@ -46,6 +46,14 @@
         url: https://{{ hostvars[item].ansible_host }}:9090/
         return_content: true
         validate_certs: false
-      register: url_check
-      failed_when: "'Red Hat Enterprise Linux' not in url_check.content"
+      register: cockpit_check
+      failed_when: "'Red Hat Enterprise Linux' not in cockpit_check.content"
+      loop: "{{ groups['managed'] }}"
+
+    - name: Check that apache URL is available
+      ansible.builtin.uri:
+        url: http://{{ hostvars[item].ansible_host }}:{{ hostvars[item].apache_listen_port }}
+        return_content: true
+      register: apache_check
+      failed_when: "'Successfully configured by Ansible' not in apache_check.content"
       loop: "{{ groups['managed'] }}"
