@@ -1,4 +1,5 @@
 /demo_ee/context
 /ansible.cfg
 ansible-navigator.log
+.ansible-lint
 /artifacts
