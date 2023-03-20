@@ -10,4 +10,4 @@ timesync_ntp_servers:
     iburst: true
 selinux_policy: targeted
 selinux_state: permissive
-apache_listen_port: 8080
+
