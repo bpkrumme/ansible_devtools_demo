@@ -12,7 +12,7 @@ Your control node needs python3.8 or newer and either podman or Docker for Linux
 
 1. You will need one or more hosts to automate against.  You can do this in your own lab environment, or using a hyperscaler, your choice
 2. Update the `demo_inventory/hosts` inventory file and files in the `group_vars` and `host_vars` directories to reflect your demo environment
-3. Update the `ansible.cfg` to meet your needs, especially the `remote_user` parameter and your token for pulling collections from Automation Hub
+3. Create `ansible.cfg` using the provided example to meet your needs, especially the `remote_user` parameter and your URL and token for pulling collections from Automation Hub
 4. Test ad-hoc commands against your demo environment to make sure it works before performing the demo
 5. Install VS Code and Ansible Extension
 6. Install ansible-lint, ansible-navigator, and ansible-builder on your demo control node.
@@ -35,18 +35,21 @@ Your control node needs python3.8 or newer and either podman or Docker for Linux
 
 Demo steps:
 
-1. Create `apache_install.yml` playbook in the root directory
-2. Build out the base structure of a playbook
-    1. Intentionally use a lowercase name for the play, signaling ansible-lint
+1. Make sure auto-save is enabled in VS Code
+2. Create `apache_install.yml` playbook in the root directory
+3. Build out the base structure of a playbook including all tasks to install and configure apache.  Templates and files are in the repo for `httpd.conf` and `index.html`
+    1. Intentionally use a lowercase name for the play, signaling ansible-lint integration
     2. explain that ansible-lint is integrated with VS Code Extension when you have both installed
-3. Add tasks, making note to attendees of syntax suggestions and highlighting
+4. Add tasks, making note to attendees of syntax suggestions and highlighting
     1. Install httpd package using yum or dnf module (USE FQCN)
         1. Place mouse pointer over FQCN
         2. Show live documentation
     2. Enable httpd service using service module (not FQCN)
     3. copy index.html using copy module (not FQCN)
-4. Point out the red squiggly syntax identifiers and explain that this is because we have ansible-lint installed as well, so we're getting live syntax-checking.  This is a good time to move on to ansible-lint
-5. Do not run the playbook, it will be done later in the ansible-navigator section
+5. Hover mouse over module name to see module documentation
+6. Hover mouse over task parameters to see parameter documentation
+7. Point out the red squiggly syntax identifiers and explain that this is because we have ansible-lint installed as well, so we're getting live syntax-checking.  This is a good time to move on to ansible-lint
+8. Do NOT run the playbook, it will be done later in the ansible-navigator section
 
 ## Demonstrate direct usage of Ansible Lint
 
@@ -175,7 +178,7 @@ Demo steps:
             $ ansible-builder build -t demo_ee -v 3 --prune-images
 
 6. Now we can configure ansible-navigator to use our Execution Environment
-    1. Modify `ansible-navigator.yml` removing the coment on the `image` line
+    1. Modify `ansible-navigator.yml` removing the comment on the `image` line
     2. Explain that this sets our default execution environment, but we could also set this on the CLI when we launch Ansible Navigator
 
             $ ansible-navigator --execution-environment-image demo_ee
@@ -187,6 +190,6 @@ Demo steps:
 
             $ ansible-navigator run configure_base_system.yml
 
-        OR
+        OR if you did not update `ansible-navigator.yml`
 
             $ ansible-navigator run --execution-environment-image demo_ee configure_base_system.yml
