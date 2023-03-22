@@ -90,7 +90,7 @@ Demo steps:
             ANSIBLE_NAVIGATOR_CONFIG=<file path>
 
 2. Explain that the configuration can use either `YAML` or `JSON` format and must use the appropriate extension.  For `YAML` format, this must be either `.yaml` or `.yml` and for `JSON` it must be `.json`
-3. Show our current configuration file in the project directory
+3. Show our current `ansible-navigator.yml` configuration file in the project directory
 4. Launch ansible-navigator in VS Code terminal
     1. Interactive Overview - Explain: The text-based interface uses a vim-like command structure, so to we type a colon followed by the menu we want to view
         1. Collections
@@ -160,7 +160,7 @@ Demo steps:
     1. We need an Execution Environment with this collection in order to run the playbook, and so we can provide our runtime to AAP Platform Operators
 2. Explain that this collection is a certified and supported collection that we can get from Automation Hub
 3. Show the `ansible.cfg.example` ansible configuration file with the token configuration for Automation Hub
-4. Show the `demo_ee/execution-environment.yml
+4. Show the `demo_ee/execution-environment.yml` file
     1. base image and builder image which are pulled from the `registry.redhat.io` container registry
     2. ansible.cfg which sets our ansible configuration inside the Execution Environment
     3. requirements.yml which defines the collections we want available in the EE
