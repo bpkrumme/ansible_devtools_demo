@@ -1,0 +1,17 @@
+---
+- name: install and configure an apache webserver
+  hosts: managed
+  become: true
+  tasks:
+  ## TODO - Install apache
+
+  ## TODO - Start and enable apache
+
+  ## TODO - Configure Apache using template
+
+  ## TODO - Copy index.html
+
+  ## TODO - HTTP/HTTPS enabled in firewalld
+
+  handlers:
+  ## TODO - Restart Apache on config change

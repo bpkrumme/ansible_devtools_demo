@@ -14,7 +14,7 @@ Your control node needs python3.8 or newer and either podman or Docker for Linux
 2. Update the `demo_inventory/hosts` inventory file and files in the `group_vars` and `host_vars` directories to reflect your demo environment
 3. Create `ansible.cfg` using the provided example to meet your needs, especially the `remote_user` parameter and your URL and token for pulling collections from Automation Hub
 4. Test ad-hoc commands against your demo environment to make sure it works before performing the demo
-5. Install VS Code and Ansible Extension
+5. Install VS Code and Ansible Extension (ensure that you have Anisble Lightspeed enabled and you are authenticated to the Lightspeed service)
 6. Install ansible-lint, ansible-navigator, and ansible-builder on your demo control node.
 
         $ python3 -m pip install anisble-lint ansible-navigator ansible-builder
@@ -31,14 +31,14 @@ Your control node needs python3.8 or newer and either podman or Docker for Linux
 
         $ podman login registry.redhat.io
 
-## Demonstrate use of the Ansible VS Code extension
+## Demonstrate use of the Ansible VS Code extension including Ansible Lightspeed
 
 Demo steps:
 
 1. Make sure auto-save is enabled in VS Code
-2. Create `apache_install.yml` playbook in the root directory
-3. Build out the base structure of a playbook including all tasks to install and configure apache.  Templates and files are in the repo for `httpd.conf` and `index.html`
-    1. Intentionally use a lowercase name for the play, signaling ansible-lint integration
+2. Edit the `redhat_apache.yml` playbook in the root directory
+3. Complete all of the TODO items in the playbook using Ansible Lightspeed.  Templates and files are in the repo for `httpd.conf` and `index.html`
+    1. Intentionally use lowercase names for the tasks, signaling ansible-lint integration
     2. explain that ansible-lint is integrated with VS Code Extension when you have both installed
 4. Add tasks, making note to attendees of syntax suggestions and highlighting
     1. Install httpd package using yum or dnf module (USE FQCN)

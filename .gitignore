@@ -3,3 +3,4 @@
 ansible-navigator.log
 .ansible-lint
 /artifacts
+/.vscode
