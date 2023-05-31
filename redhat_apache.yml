@@ -11,7 +11,7 @@
 
   ## TODO - Copy index.html
 
-  ## TODO - HTTP/HTTPS enabled in firewalld
+  ## TODO - apache_listen_port enabled in firewalld
 
   handlers:
   ## TODO - Restart Apache on config change
