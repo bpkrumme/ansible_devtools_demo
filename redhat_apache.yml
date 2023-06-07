@@ -1,17 +1,19 @@
 ---
-- name: install and configure an apache webserver
+- name: Install and configure an apache webserver on RHEL
   hosts: managed
   become: true
   tasks:
   ## TODO - Install apache
+    - name: 
 
   ## TODO - Start and enable apache
+    - name: 
 
   ## TODO - Configure Apache using template
+    - name: 
 
   ## TODO - Copy index.html
+    - name: 
 
-  ## TODO - apache_listen_port enabled in firewalld
-
-  handlers:
-  ## TODO - Restart Apache on config change
+  ## TODO - Apache listen_port enabled in firewalld
+    - name: 

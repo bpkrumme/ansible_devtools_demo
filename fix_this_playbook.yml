@@ -1,0 +1,23 @@
+---
+- name: install and enable cockpit
+  hosts: managed
+  become: true
+  tasks:
+    - name: install some packages
+      ansible.builtin.dnf:
+        name: cockpit
+        state: latest
+
+    - name: open some firewalls
+      firewalld:
+        port: 9090/tcp
+        permanent: true
+        immediate: true
+        state: open
+
+    - ansible.builtin.service:
+        name: cockpit.socket
+        state: running
+        enabled: yes
+
+
