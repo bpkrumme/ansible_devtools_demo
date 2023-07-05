@@ -1,7 +1,7 @@
 [managed]
-node1.bk.lab
-node2.bk.lab
-node3.bk.lab
+node01
+node02
+node03
 
 [control]
 localhost ansible_connection=local
