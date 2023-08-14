@@ -3,17 +3,17 @@
   hosts: managed
   become: true
   tasks:
-  ## TODO - Install apache
+  ## TODO - Install Apache package
     - name: 
 
-  ## TODO - Start and enable apache
+  ## TODO - Start and enable Apache
     - name: 
 
-  ## TODO - Configure Apache using template
+  ## TODO - Write httpd.conf template
     - name: 
 
   ## TODO - Copy index.html
     - name: 
 
-  ## TODO - Apache listen_port enabled in firewalld
+  ## TODO - Open Apache listen port in firewalld
     - name: 
