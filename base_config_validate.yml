@@ -1,6 +1,6 @@
 ---
 - name: Validate per-host base configuration
-  hosts: managed
+  hosts: mobile
   become: true
   tasks:
     - name: Check that timesync servers are correct
@@ -18,7 +18,9 @@
 
     - name: Check that selinux is using correct policy
       ansible.builtin.shell:
-        cmd: sestatus | grep 'Loaded policy'
+        cmd: |
+          set -o pipefail
+          sestatus | grep 'Loaded policy'
       register: sepol_check
       failed_when: "selinux_policy not in sepol_check.stdout"
       changed_when: false
@@ -48,7 +50,7 @@
         validate_certs: false
       register: cockpit_check
       failed_when: "'Red Hat Enterprise Linux' not in cockpit_check.content"
-      loop: "{{ groups['managed'] }}"
+      loop: "{{ groups['mobile'] }}"
 
     - name: Check that apache URL is available
       ansible.builtin.uri:
@@ -56,4 +58,4 @@
         return_content: true
       register: apache_check
       failed_when: "'Successfully configured by Ansible' not in apache_check.content"
-      loop: "{{ groups['managed'] }}"
+      loop: "{{ groups['mobile'] }}"

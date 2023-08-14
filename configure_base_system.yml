@@ -1,6 +1,6 @@
 ---
 - name: Configure systems to baseline standards
-  hosts: managed
+  hosts: mobile
   become: true
   roles:
     - redhat.rhel_system_roles.timesync

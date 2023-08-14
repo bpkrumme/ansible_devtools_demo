@@ -1,6 +1,6 @@
 ---
 - name: Install and configure an apache webserver on RHEL
-  hosts: managed
+  hosts: mobile
   become: true
   tasks:
   ## TODO - Install Apache package

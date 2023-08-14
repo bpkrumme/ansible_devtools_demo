@@ -1,0 +1,13 @@
+---
+timesync_ntp_servers:
+  - hostname: 0.pool.ntp.org
+    iburst: true
+  - hostname: 1.pool.ntp.org
+    iburst: true
+  - hostname: 2.pool.ntp.org
+    iburst: true
+  - hostname: 3.pool.ntp.org
+    iburst: true
+selinux_policy: targeted
+selinux_state: permissive
+
