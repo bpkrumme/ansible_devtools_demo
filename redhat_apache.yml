@@ -15,5 +15,5 @@
   ## TODO - Copy index.html
     - name: 
 
-  ## TODO - Open Apache listen port in firewalld
+  ## TODO - Open Apache listen port in firewalld immediately
     - name: 
